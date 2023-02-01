@@ -1,2 +1,2 @@
 # raytracing-in-python
-A raytracer I implemented in Python following "Ray Tracing In One Weekend" by Peter Shirley
+A raytracer I implemented in Python following [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html) by Peter Shirley
