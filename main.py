@@ -14,6 +14,8 @@ from camera import *
 from colour import *
 from material import *
 
+from scene_presets import random_scene
+
 def ray_col(r: ray, world: hittable, depth: int) -> vec3:
     rec = hit_record()
 
@@ -22,7 +24,6 @@ def ray_col(r: ray, world: hittable, depth: int) -> vec3:
         return vec3(0, 0, 0)
 
     # 0.001 gets rid of shadow acne
-
     if world.hit(r, 0.001, math.inf, rec):
         scattered = ray(None, None)
         attenuation = vec3(None, None, None)
@@ -35,46 +36,31 @@ def ray_col(r: ray, world: hittable, depth: int) -> vec3:
     return vec_add(vec_smul(vec3(1.0, 1.0, 1.0), (1.0 - t)), vec_smul(vec3(0.5, 0.7, 1.0), t))
 
 # Image
-aspect_ratio = 16.0 / 9.0
+aspect_ratio = 3.0 / 2.0
 image_wt = 400
 image_ht = int(image_wt / aspect_ratio)
-samples_per_pixel = 10
-max_depth = 10
+samples_per_pixel = 3
+max_depth = 5
 
 # World
-world = hittable_list()
-
-mat_ground = lambertian(vec3(0.8, 0.8, 0.8))
-mat_center = lambertian(vec3(0.7, 0.3, 0.3))
-mat_left   = metal(vec3(0.8, 0.8, 0.8), 0.3)
-mat_right  = metal(vec3(0.8, 0.6, 0.2), 1.0)
-
-world.add(sphere(vec3( 0.0, -100.5, -1.0), 100.0, mat_ground))
-world.add(sphere(vec3( 0.0,    0.0, -1.0),   0.5, mat_center))
-world.add(sphere(vec3(-1.0,    0.0, -1.0),   0.5, mat_left))
-world.add(sphere(vec3( 1.0,    0.0, -1.0),   0.5, mat_right))
+world = random_scene()
 
 # Camera
-cam = camera()
+lookfrom = vec3(13, 2, 3)
+lookat = vec3(0, 0, 0)
+vup = vec3(0, 1, 0)
+dist_to_focus = 10.0
+aperture = 0.1
 
-viewport_ht = 2.0
-viewport_wt = aspect_ratio * viewport_ht
-focal_length = 1.0
+cam = camera(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus)
 
-origin = vec3(0.0, 0.0, 0.0)
-horizontal = vec3(viewport_wt, 0, 0)
-vertical = vec3(0, viewport_ht, 0)
-
-half_horizontal = vec_sdiv(horizontal, 2)
-half_vertical = vec_sdiv(vertical, 2)
-lower_left_corner = vec_sub(vec_sub(vec_sub(origin, half_horizontal), half_vertical), vec3(0, 0, focal_length))
-
+# Render
 image_data = np.zeros((image_ht, image_wt, 3), dtype=np.uint8)
 print(f"Image dimensions: {image_wt}x{image_ht}")
 
 start_time = time.time()
 for j in range(image_ht - 1, -1, - 1):
-    print(f'Scanlines remaining: {j}' + ' ' * len(str(image_ht)), end='\r')
+    print(f'Scanlines remaining: {j}' + '   ', end='\r')
     for i in range(image_wt):
 
         # Antialiasing!

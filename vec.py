@@ -99,7 +99,7 @@ def vec_unit(v: vec3) -> vec3:
     return vec_sdiv(v, v.len())
 
 def random_in_unit_sphere() -> vec3:
-    while (1):
+    while 1:
         p = vec3.rand_between(-1, 1)
         if p.len_sqr() >= 1:
             continue
@@ -108,5 +108,20 @@ def random_in_unit_sphere() -> vec3:
 def random_unit_in_unit_sphere() -> vec3:
     return vec_unit(random_in_unit_sphere())
 
+def random_in_unit_disk() -> vec3:
+    while 1:
+        p = vec3(random.uniform(-1, 1), random.uniform(-1, 1), 0)
+        if p.len_sqr() >= 1:
+            continue
+        return p
+
 def reflect(v: vec3, n: vec3) -> vec3:
     return vec_sub(v, vec_smul(n, 2 * vec_dot(v, n)))
+
+def refract(uv: vec3, n: vec3, etai_over_etat: float) -> vec3:
+    cos_theta = min(vec_dot(uv.neg(), n), 1.0)
+    r_out_perp = vec_smul(vec_add(uv, vec_smul(n, cos_theta)), etai_over_etat)
+    r_out_parallel = vec_smul(n, -math.sqrt(math.fabs(1.0 - r_out_perp.len_sqr())))
+
+    return vec_add(r_out_perp, r_out_parallel)
+
