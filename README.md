@@ -7,4 +7,3 @@ Is it slow? Yes. Very, very, very unbearably slow. I paid the appropriate price.
 
 To remedy the slowness of this all, I recommend running the raytracer with [PyPy](https://www.pypy.org/), which is reportedly 4.8 times faster than CPython 3.7.
 
-## Running the demo
