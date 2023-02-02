@@ -5,7 +5,10 @@ from material import *
 from vec import *
 from sphere import *
 
+random.seed(694201337)
+
 def random_scene() -> hittable_list:
+
     world = hittable_list()
 
     ground_material = lambertian(vec3(0.5, 0.5, 0.5))

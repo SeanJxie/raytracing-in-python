@@ -24,6 +24,4 @@ class hittable:
         pass
 
     def hit(self, r: ray, t_min: float, t_max: float, rec: hit_record) -> bool:
-        print(rec.__dict__)
-
         pass

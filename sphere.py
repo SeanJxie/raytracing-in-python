@@ -16,15 +16,6 @@ class sphere(hittable):
     def hit(self, r: ray, t_min: float, t_max: float, rec: hit_record) -> bool:
         oc = vec_sub(r.origin(), self.center)
 
-        # UNOPTIMIZED SPHERE HIT:
-        # # The dot product of a vector with itself is the square of its magnitude.
-        # a = vec_dot(r.direction(), r.direction())
-        # b = 2.0 * vec_dot(oc, r.direction())
-        # c = vec_dot(oc, oc) - radius * radius
-        # discriminant = b * b - 4 * a * c
-
-        # OPTIMIZED SPHERE HIT:
-        # The dot product of a vector with itself is the square of its magnitude.
         a = vec_dot(r.direction(), r.direction())
         half_b = vec_dot(oc, r.direction())
         c = oc.len_sqr() - self.r * self.r
