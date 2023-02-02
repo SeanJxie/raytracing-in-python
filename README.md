@@ -1,4 +1,7 @@
 # raytracing-in-python
+
+![alt text](http://url/to/img.png)
+
 A raytracer I implemented following [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html) by Peter Shirley.
 
 Why's it written in Python and not in C++ as indended? I like Python. I didn't want to get caught up in memory management bugs for hours.
