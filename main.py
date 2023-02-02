@@ -20,7 +20,7 @@ from scene_presets import random_scene
 aspect_ratio = 3 / 2
 image_wt = 1000
 image_ht = int(image_wt / aspect_ratio)
-samples_per_pixel = 1
+samples_per_pixel = 10
 max_depth = 10
 
 # World
@@ -57,13 +57,6 @@ def ray_col(r: ray, world: hittable, depth: int) -> vec3:
 
 
 def main():
-    # Set up a live window to watch the render
-    import pygame as pg
-    import sys
-
-    surface = pg.display.set_mode((image_wt, image_ht))
-    pg.display.set_caption("Live Render")
-
     print(f"Image dimensions: {image_wt}x{image_ht}")
 
     image_data = np.zeros((image_ht, image_wt, 3), dtype=np.uint8)
@@ -73,11 +66,6 @@ def main():
     for j in range(image_ht - 1, -1, -1):
         print(f'Scanlines remaining: {j}' + '   ', end='\r')
         for i in range(image_wt):
-            for event in pg.event.get():
-                if event.type == pg.QUIT:
-                    pg.display.quit()
-                    sys.exit()
-            
             # Antialias
             pixel_col = vec3(0, 0, 0)
             for _ in range(samples_per_pixel):
@@ -87,9 +75,7 @@ def main():
                 r = cam.get_ray(u, v)
                 pixel_col = vec_add(pixel_col, ray_col(r, world, max_depth))
             
-            write_col_to_pygame_surface(surface, i, image_ht - j - 1, pixel_col, samples_per_pixel)
-
-            pg.display.update()
+            write_col(image_data, i, image_ht - j - 1, pixel_col, samples_per_pixel)
 
     dt = time.time() - start_time
 
