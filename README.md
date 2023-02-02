@@ -1,6 +1,6 @@
 # raytracing-in-python
 
-![alt text](http://url/to/img.png)
+![demo](https://github.com/SeanJxie/raytracing-in-python/blob/main/scattered.png)
 
 A raytracer I implemented following [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html) by Peter Shirley.
 
