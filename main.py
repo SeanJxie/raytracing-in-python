@@ -5,15 +5,15 @@ from scene_presets import *
 from settings import *
 from render import render_scene
 
-if __name__ == "__main__":
+def main():
     # World
     world = scattered_balls()
 
     # Image
     aspect_ratio = 3 / 2
-    image_wt = 1000
+    image_wt = 500
     image_ht = int(image_wt / aspect_ratio)
-    samples_per_pixel = 100
+    samples_per_pixel = 10
     max_depth = 10
     s = settings(image_wt, image_ht, samples_per_pixel, max_depth)
 
@@ -26,3 +26,6 @@ if __name__ == "__main__":
     cam = camera(lookfrom, lookat, vup, 90, aspect_ratio, aperture, dist_to_focus)
 
     render_scene(world, cam, s)
+
+if __name__ == '__main__':
+    main()

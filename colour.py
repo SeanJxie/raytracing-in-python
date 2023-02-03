@@ -1,11 +1,9 @@
 import math
 
-import numpy as np
-
 from vec import *
 from util import *
 
-def write_col(image_data: np.ndarray, i: int, j: int, col: vec3, samples_per_pixel: int) -> None:
+def compute_rgb_from_sample_sum(col: vec3, samples_per_pixel: int) -> list:
     r = col.x()
     g = col.y()
     b = col.z()
@@ -15,7 +13,7 @@ def write_col(image_data: np.ndarray, i: int, j: int, col: vec3, samples_per_pix
     g = math.sqrt(scale * g)
     b = math.sqrt(scale * b)
 
-    image_data[j, i] = [
+    return [
         int(256 * clamp(r, 0.0, 0.999)), 
         int(256 * clamp(g, 0.0, 0.999)), 
         int(256 * clamp(b, 0.0, 0.999))

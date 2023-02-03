@@ -2,7 +2,6 @@ import math
 import random
 import time
 import datetime
-from itertools import repeat
 from functools import partial
 from multiprocessing import Pool
 
@@ -47,28 +46,15 @@ def render_scanline(scanline: list, world: hittable_list, cam: camera, samples: 
 
     for i in scanline[1:]:
         # Sample and write 
-        pixel_col = vec3(0, 0, 0)
+        sampled_col_sum = vec3(0, 0, 0)
         for _ in range(samples):
             u = (i + random.random()) / (wt - 1)
             v = (j + random.random()) / (ht - 1)
 
             r = cam.get_ray(u, v)
-            pixel_col = vec_add(pixel_col, ray_col(r, world, max_depth))
-        
-        r = pixel_col.x()
-        g = pixel_col.y()
-        b = pixel_col.z()
+            sampled_col_sum = vec_add(sampled_col_sum, ray_col(r, world, max_depth))
 
-        scale = 1.0 / samples
-        r = math.sqrt(scale * r)
-        g = math.sqrt(scale * g)
-        b = math.sqrt(scale * b)
-
-        rendered_scanline.append([
-            int(256 * clamp(r, 0.0, 0.999)), 
-            int(256 * clamp(g, 0.0, 0.999)), 
-            int(256 * clamp(b, 0.0, 0.999))
-        ])
+        rendered_scanline.append(compute_rgb_from_sample_sum(sampled_col_sum, samples))
 
     return rendered_scanline
 
