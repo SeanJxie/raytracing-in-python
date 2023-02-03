@@ -1,7 +1,7 @@
 # raytracing-in-python
 
 A raytracer I implemented following [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html) by Peter Shirley.
-Extra features will be added as I decide to expand the project beyond what is taught in the tutorial.
+Extra features will be added as I decide to expand the project to a somewhat useable raytracing software.
 
 Why's it written in Python and not in C++ as indended? I like Python. I didn't want to get caught up in memory management bugs for hours.
 
