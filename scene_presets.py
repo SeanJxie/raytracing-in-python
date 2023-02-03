@@ -5,8 +5,9 @@ from material import *
 from vec import *
 from geometry import *
 
+random.seed(1234)
+
 def scattered_balls() -> hittable_list:
-    random.seed(42)
 
     world = hittable_list()
 
@@ -45,16 +46,10 @@ def scattered_balls() -> hittable_list:
 
     material3 = metal(vec3(0.7, 0.6, 0.5), 0.0)
     world.add(sphere(vec3(4, 1, 0), 1.0, material3))
-
-    # TEMP
-    material1 = metal(vec3(0.7, 0.6, 0.5), 0.0)
-    world.add(triangle(vec3(0, 1, 0), vec3(1, 1, 0), vec3(0, 1, 2), material2))
-
+    
     return world
 
 def tri() -> hittable_list:
-    random.seed(42)
-
     world = hittable_list()
 
     ground_material = lambertian(vec3(0.5, 0.5, 0.5))

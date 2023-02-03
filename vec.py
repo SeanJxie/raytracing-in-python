@@ -62,7 +62,6 @@ class vec3:
 
     @staticmethod
     def rand() -> object:
-        random.seed(0)
         return vec3(random.random(), random.random(), random.random())
 
     @staticmethod

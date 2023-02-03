@@ -19,22 +19,22 @@ from model_loader import *
 
 # Image
 aspect_ratio = 3 / 2
-image_wt = 1000
+image_wt = 500
 image_ht = int(image_wt / aspect_ratio)
-samples_per_pixel = 20
-max_depth = 50
+samples_per_pixel = 50
+max_depth = 10
 
 # World
 world = scattered_balls()
 
 # Camera
-lookfrom = vec3(60, 60, 60)
-lookat = vec3(0, 0, 0)
+lookfrom = vec3(13.0, 2.0, 3.0)
+lookat = vec3(0.0, 0.0, 0.0)
 vup = vec3(0, 1, 0)
-dist_to_focus = 90.0
-aperture = 0.0
+dist_to_focus = 10.0
+aperture = 0.1
 
-cam = camera(lookfrom, lookat, vup, 90, aspect_ratio, aperture, dist_to_focus)
+cam = camera(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus)
 
 def ray_col(r: ray, world: hittable, depth: int) -> vec3:
     rec = hit_record()
@@ -50,6 +50,8 @@ def ray_col(r: ray, world: hittable, depth: int) -> vec3:
 
         if rec.material.scatter(r, rec, attenuation, scattered):
             return vec_mul(attenuation, ray_col(scattered, world, depth - 1))
+
+        return vec3(0, 0, 0)
 
     unit_dir = vec_unit(r.direction())
     t = 0.5 * (unit_dir.y() + 1.0)
@@ -104,7 +106,7 @@ if __name__ == '__main__':
 
     ntasks = len(coord_image)
     image_data = []
-    with Pool(processes=8) as p:
+    with Pool(processes=5) as p:
         for i, sl in enumerate(p.imap(render_scanline, coord_image), 1):
             print(f'Render progress: {i / ntasks:.2%}', end='\r')
             image_data.append(sl)
