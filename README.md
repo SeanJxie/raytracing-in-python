@@ -28,9 +28,6 @@ The rest of the project uses the Python Standard Library only.
 Install both the packages with
 ```
 pypy -m pip install Pillow
-```
-and
-```
 pypy -m pip install numpy
 ```
 
@@ -38,7 +35,7 @@ Next, clone this repo with
 ```
 git clone https://github.com/SeanJxie/raytracing-in-python
 ```
-and
+and move into it with
 ```
 cd raytracing-in-python
 ```
