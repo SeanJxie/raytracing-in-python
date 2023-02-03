@@ -3,7 +3,7 @@ import math
 from vec import *
 from ray import *
 
-class camera:
+class Camera:
     def __init__(self, lookfrom: vec3, lookat: vec3, vup: vec3, vfov: float, aspect_ratio: float, aperture: float, 
             focus_dist: float) -> None:
 
@@ -29,11 +29,11 @@ class camera:
 
         self.lens_radius = aperture / 2
 
-    def get_ray(self, s: float, t: float) -> ray:
-        rd = vec_smul(random_in_unit_disk(), self.lens_radius)
-        offset = vec_add(vec_smul(self.u, rd.x()), vec_smul(self.v, rd.y()))
+    def get_ray(self, s: float, t: float) -> Ray:
+        rd = vec_smul(vec_rand_in_unit_disk(), self.lens_radius)
+        offset = vec_add(vec_smul(self.u, rd.x), vec_smul(self.v, rd.y))
 
-        return ray(vec_add(self.origin, offset), 
+        return Ray(vec_add(self.origin, offset), 
             vec_sub(vec_sub(vec_add(vec_add(self.lower_left_corner, vec_smul(self.horizontal, s)), 
             vec_smul(self.vertical, t)), self.origin), offset))
 

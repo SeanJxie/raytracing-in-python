@@ -4,9 +4,9 @@ from vec import *
 from util import *
 
 def compute_rgb_from_sample_sum(col: vec3, samples_per_pixel: int) -> list:
-    r = col.x()
-    g = col.y()
-    b = col.z()
+    r = col.x
+    g = col.y
+    b = col.z
 
     scale = 1.0 / samples_per_pixel
     r = math.sqrt(scale * r)

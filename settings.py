@@ -1,7 +1,5 @@
 # TODO
 
-from hittable_list import *
-
 class settings:
     def __init__(self, image_wt: float, image_ht: float, samples: int, max_trace_depth: int) -> None:
         self.wt = image_wt

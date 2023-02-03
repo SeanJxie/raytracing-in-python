@@ -23,7 +23,7 @@ def main():
     vup = vec3(0, 1, 0)
     dist_to_focus = 10.0
     aperture = 0.1
-    cam = camera(lookfrom, lookat, vup, 90, aspect_ratio, aperture, dist_to_focus)
+    cam = Camera(lookfrom, lookat, vup, 90, aspect_ratio, aperture, dist_to_focus)
 
     render_scene(world, cam, s)
 

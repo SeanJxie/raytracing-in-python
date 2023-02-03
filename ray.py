@@ -1,22 +1,9 @@
-import numpy as np
-
 from vec import *
 
-class ray:
-    def __init__(self, origin: vec3, direction: vec3):
-        self.orig = origin
-        self.dir = direction
-
-    def copy_assign(self, other: object) -> None:
-        self.orig = other.orig
-        self.dir = other.dir
-
-    def origin(self) -> vec3:
-        return self.orig
-
-    def direction(self) -> vec3:
-        return self.dir
+class Ray:
+    def __init__(self, o: vec3, d: vec3):
+        self.o = o
+        self.d = d
 
     def at(self, t: float) -> vec3:
-        return vec_add(self.orig, vec_smul(self.dir, t))
-
+        return vec_add(self.o, vec_smul(self.d, t))
