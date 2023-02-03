@@ -48,14 +48,3 @@ def scattered_balls() -> hittable_list:
     world.add(sphere(vec3(4, 1, 0), 1.0, material3))
     
     return world
-
-def tri() -> hittable_list:
-    world = hittable_list()
-
-    ground_material = lambertian(vec3(0.5, 0.5, 0.5))
-    world.add(sphere(vec3(0, -1000, 0), 1000, ground_material))
-
-    material1 = metal(vec3(0.7, 0.6, 0.5), 0.0)
-    world.add(triangle(vec3(0, 1, 0), vec3(1, 1, 0), vec3(0, 1, 2), material1))
-
-    return world
