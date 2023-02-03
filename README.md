@@ -12,6 +12,6 @@ There are some solutions to the slowness, though.
 
 - On top of PyPy, the renderer uses Python's `multiprocessing` package which allows the computational workload to be split over multiple processes.
 
-With those two improvements, the render time is orders of magnitude faster. For example, the image below takes about *a day* to render with what is taught in the tutorial (clearly, it was made to be written in C++). However, with PyPy and multiprocessing, the time is reduced to about *35 seconds*. 
+With those two improvements, the render time is orders of magnitude faster. For example, the image below takes about *a day* to render with regular CPython and no multiprocessing, but only about *3 minutes* with PyPy and multiprocessing.
 
 ![demo](https://github.com/SeanJxie/raytracing-in-python/blob/main/out.png)
