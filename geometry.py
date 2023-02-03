@@ -13,7 +13,7 @@ class sphere(hittable):
         self.r = r
         self.m = m
 
-    def hit(self, r: ray, t_min: float, t_max: float, rec: hit_record) -> bool:
+    def hit(self, r: ray, t_min: float, t_max: float) -> tuple:
         oc = vec_sub(r.origin(), self.center)
 
         a = vec_dot(r.direction(), r.direction())
@@ -22,7 +22,7 @@ class sphere(hittable):
         discriminant = half_b * half_b - a * c
 
         if discriminant < 0:
-            return False
+            return False, None
 
         sqrtd = math.sqrt(discriminant)
 
@@ -30,7 +30,9 @@ class sphere(hittable):
         if root < t_min or t_max < root:
             root = (-half_b + sqrtd) / a
             if root < t_min or t_max < root:
-                return False
+                return False, None
+
+        rec = hit_record()
 
         rec.t = root
         rec.p = r.at(rec.t)
@@ -38,7 +40,7 @@ class sphere(hittable):
         rec.set_face_normal(r, outward_normal)
         rec.material = self.m
 
-        return True
+        return True, rec
 
 class triangle(hittable):
     def __init__(self, v0: vec3, v1: vec3, v2: vec3, m: material) -> None:

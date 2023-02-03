@@ -1,5 +1,3 @@
-import numpy as np
-
 from vec import *
 from ray import *
 
@@ -23,5 +21,5 @@ class hittable:
     def __init__(self) -> None:
         pass
 
-    def hit(self, r: ray, t_min: float, t_max: float, rec: hit_record) -> bool:
+    def hit(self, r: ray, t_min: float, t_max: float) -> tuple:
         pass

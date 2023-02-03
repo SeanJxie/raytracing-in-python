@@ -21,7 +21,7 @@ from model_loader import *
 aspect_ratio = 3 / 2
 image_wt = 500
 image_ht = int(image_wt / aspect_ratio)
-samples_per_pixel = 50
+samples_per_pixel = 100
 max_depth = 10
 
 # World
@@ -37,18 +37,17 @@ aperture = 0.1
 cam = camera(lookfrom, lookat, vup, 20, aspect_ratio, aperture, dist_to_focus)
 
 def ray_col(r: ray, world: hittable, depth: int) -> vec3:
-    rec = hit_record()
 
     # If we've exceeded the ray bounce limit, no more light is gathered.
     if depth <= 0:
         return vec3(0, 0, 0)
 
     # 0.001 gets rid of shadow acne
-    if world.hit(r, 0.001, math.inf, rec):
-        scattered = ray(None, None)
-        attenuation = vec3(None, None, None)
+    has_hit, rec = world.hit(r, 0.001, math.inf)
+    if has_hit:
+        has_scattered, attenuation, scattered = rec.material.scatter(r, rec)
 
-        if rec.material.scatter(r, rec, attenuation, scattered):
+        if has_scattered:
             return vec_mul(attenuation, ray_col(scattered, world, depth - 1))
 
         return vec3(0, 0, 0)
@@ -99,20 +98,20 @@ if __name__ == '__main__':
         scanline = [j]
         for i in range(image_wt):
             scanline.append(i)
-
         coord_image.append(scanline)
 
-    start = time.time()
-
     ntasks = len(coord_image)
+    nprocs = 7
     image_data = []
-    with Pool(processes=5) as p:
+
+    start = time.time()
+    with Pool(nprocs) as p:
         for i, sl in enumerate(p.imap(render_scanline, coord_image), 1):
-            print(f'Render progress: {i / ntasks:.2%}', end='\r')
+            print(f'Render progress: {i / ntasks:.2%}  ', end='\r')
             image_data.append(sl)
 
     dt = time.time() - start
-    print(f"\nRender time: {str(datetime.timedelta(seconds=dt))}")
+    print(f"\nRender time ({nprocs} procs): {str(datetime.timedelta(seconds=dt))}")
 
     image = Image.fromarray(np.array(image_data, dtype=np.uint8))
     image.show()
