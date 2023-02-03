@@ -17,7 +17,7 @@ With those two improvements, the render time is orders of magnitude faster. For 
 ![demo](https://github.com/SeanJxie/raytracing-in-python/blob/main/out.png)
 
 # How to run
-To get started, install and setup [PyPy](https://www.pypy.org/) and get it working with `pip`. [Here](https://www.activestate.com/resources/quick-reads/how-to-install-and-work-with-pypy/)' a quick walkthrough.
+To get started, install and setup [PyPy](https://www.pypy.org/) and get it working with `pip`. [Here](https://www.activestate.com/resources/quick-reads/how-to-install-and-work-with-pypy/)'s a quick walkthrough.
 
 The raytracer only uses two external libraries (which are both used on the same line of code):
 - `Pillow` - for saving rendered images to memory.
