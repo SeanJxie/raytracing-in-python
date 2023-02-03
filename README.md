@@ -8,7 +8,7 @@ Why's it written in Python and not in C++ as indended? It's simple and readable.
 Is it slow? Yes. Very, very, very unbearably slow. I paid the appropriate price.
 
 There are some solutions to the slowness, though.
-- I recommend running the raytracer with [PyPy](https://www.pypy.org/) (which is Python implemented with a [JIT compiler](https://en.wikipedia.org/wiki/Just-in-time_compilation), amoung other useful features).
+- I recommend running the raytracer with [PyPy](https://www.pypy.org/) (which is Python implemented with a [JIT compiler](https://en.wikipedia.org/wiki/Just-in-time_compilation), among other useful features).
 
 - On top of PyPy, the renderer uses Python's `multiprocessing` package which allows the computational workload to be split over multiple processes.
 
