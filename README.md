@@ -5,7 +5,7 @@ Extra features will be added as I decide to expand the project to a somewhat use
 
 Why's it written in Python and not in C++ as indended? Python is simple and readable. I wanted to focus on the raytracing more than the coding.
 
-Is it slow? Yes. Very, very, very unbearably slow. I paid the appropriate price.
+Is it slow? By itself, yes. Very, very, very unbearably slow. I paid the appropriate price.
 
 There are some solutions to the slowness, though.
 - I recommend running the raytracer with [PyPy](https://www.pypy.org/) (which is a Python implementation that comes with a [JIT compiler](https://en.wikipedia.org/wiki/Just-in-time_compilation), among other useful features).
