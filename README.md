@@ -3,7 +3,7 @@
 A raytracer I implemented following [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html) by Peter Shirley.
 Extra features will be added as I decide to expand the project to a somewhat useable raytracing software.
 
-Why's it written in Python and not in C++ as indended? It's simple and readable. I wanted to focus on the raytracing more than the coding.
+Why's it written in Python and not in C++ as indended? Python is simple and readable. I wanted to focus on the raytracing more than the coding.
 
 Is it slow? Yes. Very, very, very unbearably slow. I paid the appropriate price.
 
