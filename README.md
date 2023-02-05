@@ -1,7 +1,7 @@
 # raytracing-in-python
 
 A raytracer I implemented based on Peter Shirley's wonderful [raytracing book series](https://raytracing.github.io/).
-As it's implemented in Python and not in C++, the structure of code may slightly deviate from that taught in the book series. Furthermore, extra features will be added as I decide to expand the project to a useable raytracing software.
+As it's implemented in Python and not in C++ as intended, the structure of the code may slightly deviate from that taught in the books. Furthermore, extra features will be added as I decide to expand the project to a useable raytracing software.
 
 Why's it written in Python and not in C++ as indended? Python is simple and readable. I wanted to focus on the raytracing more than the coding.
 
