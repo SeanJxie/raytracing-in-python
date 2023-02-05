@@ -6,7 +6,7 @@ As it's implemented in Python and not in C++ as intended, the structure of the c
 Why's it written in Python and not in C++ as indended? Python is simple and readable. I wanted to focus on the raytracing more than the coding.
 
 There are several optimizations that have been made to combat the slowness of Python:
-- I recommend running the raytracer with [PyPy](https://www.pypy.org/) (which is a Python implementation that comes with a [JIT compiler](https://en.wikipedia.org/wiki/Just-in-time_compilation), among other useful features).
+- I recommend running the raytracer with [PyPy](https://www.pypy.org/) (which is a Python implementation that uses a [JIT compiler](https://en.wikipedia.org/wiki/Just-in-time_compilation)).
 
 - On top of PyPy, the renderer uses Python's `multiprocessing` package which allows the computational workload to be split over multiple processes.
 
