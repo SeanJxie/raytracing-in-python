@@ -3,7 +3,7 @@ import math
 from vec import *
 from util import *
 
-def compute_rgb_from_sample_sum(col: vec3, samples_per_pixel: int) -> list:
+def compute_rgb_from_sample_sum(col: V3, samples_per_pixel: int) -> list:
     r = col.x
     g = col.y
     b = col.z

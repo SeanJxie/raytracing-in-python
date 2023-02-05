@@ -4,8 +4,8 @@ from vec import *
 from ray import *
 
 class Camera:
-    def __init__(self, lookfrom: vec3, lookat: vec3, vup: vec3, vfov: float, aspect_ratio: float, aperture: float, 
-            focus_dist: float) -> None:
+    def __init__(self, lookfrom: V3, lookat: V3, vup: V3, vfov: float, aspect_ratio: float, aperture: float, 
+            focus_dist: float, _time0: float, _time1: float) -> None:
 
         theta = math.radians(vfov)
         h = math.tan(theta / 2)
@@ -28,12 +28,16 @@ class Camera:
             vec_smul(self.w, focus_dist))
 
         self.lens_radius = aperture / 2
+        self.time0 = _time0 # Shutter open
+        self.time1 = _time1 # Shutter close
 
     def get_ray(self, s: float, t: float) -> Ray:
         rd = vec_smul(vec_rand_in_unit_disk(), self.lens_radius)
         offset = vec_add(vec_smul(self.u, rd.x), vec_smul(self.v, rd.y))
 
-        return Ray(vec_add(self.origin, offset), 
-            vec_sub(vec_sub(vec_add(vec_add(self.lower_left_corner, vec_smul(self.horizontal, s)), 
-            vec_smul(self.vertical, t)), self.origin), offset))
+        return Ray(
+            vec_add(self.origin, offset), vec_sub(vec_sub(vec_add(vec_add(self.lower_left_corner, vec_smul(self.horizontal, s)), 
+            vec_smul(self.vertical, t)), self.origin), offset),
+            random.uniform(self.time0, self.time1)
+        )
 

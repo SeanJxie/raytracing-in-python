@@ -7,23 +7,25 @@ from render import render_scene
 
 def main():
     # World
-    world = scattered_balls()
+    world = scattered_spheres()
 
     # Image
-    aspect_ratio = 3 / 2
+    aspect_ratio = 1.0
     image_wt = 500
     image_ht = int(image_wt / aspect_ratio)
-    samples_per_pixel = 10
+    samples_per_pixel = 50
     max_depth = 10
-    s = settings(image_wt, image_ht, samples_per_pixel, max_depth)
+    bg_col = V3(1, 1, 1)
+    s = Settings(image_wt, image_ht, bg_col, samples_per_pixel, max_depth)
 
     # Camera
-    lookfrom = vec3(6.0, 6.0, 6.0)
-    lookat = vec3(0.0, 0.5, 0.0)
-    vup = vec3(0, 1, 0)
-    dist_to_focus = 10.0
+    lookfrom = V3(13, 2, 3)
+    lookat = V3(0, 0, 0)
+    vup = V3(0, 1, 0)
+    dist_to_focus = 10
     aperture = 0.1
-    cam = Camera(lookfrom, lookat, vup, 90, aspect_ratio, aperture, dist_to_focus)
+    fov = 20
+    cam = Camera(lookfrom, lookat, vup, fov, aspect_ratio, aperture, dist_to_focus, 0.0, 1.0)
 
     render_scene(world, cam, s)
 
