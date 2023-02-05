@@ -33,7 +33,7 @@ Next, clone this repo with
 ```
 git clone https://github.com/SeanJxie/raytracing-in-python
 ```
-and move into it with
+and move into the cloned directory with
 ```
 cd raytracing-in-python
 ```
