@@ -23,7 +23,7 @@ The raytracer only uses two external libraries:
 
 The rest of the project uses the Python Standard Library.
 
-Install both the packages with
+Install both of the packages with
 ```
 pypy -m pip install Pillow
 pypy -m pip install numpy
