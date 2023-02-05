@@ -1,13 +1,11 @@
 # raytracing-in-python
 
-A raytracer I implemented following [_Ray Tracing in One Weekend_](https://raytracing.github.io/books/RayTracingInOneWeekend.html) by Peter Shirley.
-Extra features will be added as I decide to expand the project to a somewhat useable raytracing software.
+A raytracer I implemented based on Peter Shirley's wonderful [raytracing book series](https://raytracing.github.io/).
+As it's implemented in Python and not in C++, the structure of code may slightly deviate from that taught in the book series. Furthermore, extra features will be added as I decide to expand the project to a useable raytracing software.
 
 Why's it written in Python and not in C++ as indended? Python is simple and readable. I wanted to focus on the raytracing more than the coding.
 
-Is it slow? By itself, yes. Very, very, very unbearably slow. I paid the appropriate price.
-
-There are some solutions to the slowness, though.
+There are several optimizations that have been made to combat the slowness of Python:
 - I recommend running the raytracer with [PyPy](https://www.pypy.org/) (which is a Python implementation that comes with a [JIT compiler](https://en.wikipedia.org/wiki/Just-in-time_compilation), among other useful features).
 
 - On top of PyPy, the renderer uses Python's `multiprocessing` package which allows the computational workload to be split over multiple processes.
@@ -16,7 +14,7 @@ With those two improvements, the render time is orders of magnitude faster. For 
 
 ![demo](https://github.com/SeanJxie/raytracing-in-python/blob/main/out.png)
 
-# How to run
+# Setup
 To get started, install and setup [PyPy](https://www.pypy.org/) and get it working with `pip`. [Here](https://www.activestate.com/resources/quick-reads/how-to-install-and-work-with-pypy/)'s a quick walkthrough.
 
 The raytracer only uses two external libraries (which are both used on the same line of code):
@@ -40,7 +38,6 @@ and move into it with
 cd raytracing-in-python
 ```
 
-To run the raytracer, simply
-```
-pypy .\main.py
-```
+Now, you should be ready to use the raytracer!
+
+
