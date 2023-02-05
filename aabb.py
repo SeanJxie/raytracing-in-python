@@ -26,7 +26,6 @@ class AABB:
         
         return True
     
-
 def surrounding_box(box0: AABB, box1: AABB) -> AABB:
     small = V3(
         min(box0.mini.x, box1.mini.x),

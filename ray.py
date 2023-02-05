@@ -6,5 +6,8 @@ class Ray:
         self.d = d
         self.time = time
 
+    def __str__(self) -> str:
+        return f"Ray(o={self.o} d={self.d} time={self.time})"
+
     def at(self, t: float) -> V3:
         return vec_add(self.o, vec_smul(self.d, t))

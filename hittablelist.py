@@ -1,8 +1,13 @@
+from functools import cmp_to_key
+
 from hittable import *
 
 class HittableList(Hittable):
     def __init__(self) -> None:
         self.objects = []
+
+    def sort(self, cmp: 'function') -> None:
+        self.objects = sorted(self.objects, key=cmp_to_key(cmp))
 
     def clear(self) -> None:
         self.objects.clear()

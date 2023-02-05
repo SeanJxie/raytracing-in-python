@@ -7,6 +7,15 @@ class V3:
         self.y = y
         self.z = z
 
+    def __getitem__(self, idx: int) -> float:
+        if idx == 0:
+            return self.x
+        if idx == 1:
+            return self.y
+        if idx == 2:
+            return self.z
+        raise IndexError
+
     def neg(self) -> object:
         return V3(-self.x, -self.y, -self.z)
 
@@ -20,8 +29,8 @@ class V3:
         s = 1e-8
         return (math.fabs(self.x) < s) and (math.fabs(self.y) < s) and (math.fabs(self.z) < s)
 
-    def __str__(self) -> None:
-        print(f"({self.x}, {self.y}, {self.z})")
+    def __str__(self) -> str:
+        return f"({self.x}, {self.y}, {self.z})"
 
 def vec_add(u: V3, v: V3) -> V3:
     return V3(u.x + v.x, u.y + v.y, u.z + v.z)

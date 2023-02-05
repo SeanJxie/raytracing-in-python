@@ -7,7 +7,7 @@ class XYrect(Hittable):
         self.x1 = _x1
         self.y0 = _y0
         self.y1 = _y1
-        self.k = _k
+        self.k = _k # z depth
         self.mat = _mat
 
     def hit(self, r: Ray, t_min: float, t_max: float) -> tuple[bool, HitRecord]:
@@ -42,7 +42,7 @@ class XZrect(Hittable):
         self.x1 = _x1
         self.z0 = _z0
         self.z1 = _z1
-        self.k = _k
+        self.k = _k # y depth
         self.mat = _mat
 
     def hit(self, r: Ray, t_min: float, t_max: float) -> tuple[bool, HitRecord]:
@@ -77,7 +77,7 @@ class YZrect(Hittable):
         self.y1 = _y1
         self.z0 = _z0
         self.z1 = _z1
-        self.k = _k
+        self.k = _k # x depth
         self.mat = _mat
 
     def hit(self, r: Ray, t_min: float, t_may: float) -> tuple[bool, HitRecord]:

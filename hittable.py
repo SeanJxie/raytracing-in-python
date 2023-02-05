@@ -71,9 +71,9 @@ class RotateY(Hittable):
         for i in range(2):
             for j in range(2):
                 for k in range(2):
-                    x = i*self.bbox.maxi.x + (1-i)*self.bbox.mini.x
-                    y = j*self.bbox.maxi.y + (1-j)*self.bbox.mini.y
-                    z = k*self.bbox.maxi.z + (1-k)*self.bbox.mini.z
+                    x = i * self.bbox.maxi.x + (1 - i) * self.bbox.mini.x
+                    y = j * self.bbox.maxi.y + (1 - j) * self.bbox.mini.y
+                    z = k * self.bbox.maxi.z + (1 - k) * self.bbox.mini.z
 
                     newx =  self.cos_theta*x + self.sin_theta*z;
                     newz = -self.sin_theta*x + self.cos_theta*z;
@@ -92,28 +92,34 @@ class RotateY(Hittable):
         self.bbox = AABB(minvec, maxvec)
 
     def hit(self, r: Ray, t_min: float, t_max: float) -> tuple[bool, HitRecord]:
-        origin = r.o
-        direction = r.d
+        origin = V3(
+            self.cos_theta * r.o.x - self.sin_theta * r.o.z,
+            r.o.y,
+            self.sin_theta * r.o.x + self.cos_theta * r.o.z
 
-        origin.x = self.cos_theta * r.o.x - self.sin_theta * r.o.z
-        origin.z = self.sin_theta * r.o.x + self.cos_theta * r.o.z
-
-        direction.x = self.cos_theta * r.d.x - self.sin_theta * r.d.z
-        direction.z = self.sin_theta * r.d.x + self.cos_theta * r.d.z
+        )
+        direction = V3(
+            self.cos_theta * r.d.x - self.sin_theta * r.d.z,
+            r.d.y,
+            self.sin_theta * r.d.x + self.cos_theta * r.d.z
+        )
 
         rotated_r = Ray(origin, direction, r.time)
+
         has_hit, rec = self.h.hit(rotated_r, t_min, t_max)
         if not has_hit:
             return False, None
         
-        p = rec.p
-        normal = rec.normal
-
-        p.x = self.cos_theta * rec.p.x + self.sin_theta * rec.p.z
-        p.z = -self.sin_theta * rec.p.x + self.cos_theta * rec.p.z
-
-        normal.x = self.cos_theta * rec.normal.x + self.sin_theta * rec.normal.z
-        normal.z = -self.sin_theta * rec.normal.x + self.cos_theta * rec.normal.z
+        p = V3(
+            self.cos_theta * rec.p.x + self.sin_theta * rec.p.z,
+            rec.p.y,
+            -self.sin_theta * rec.p.x + self.cos_theta * rec.p.z
+        )
+        normal = V3(
+            self.cos_theta * rec.normal.x + self.sin_theta * rec.normal.z,
+            rec.normal.y,
+            -self.sin_theta * rec.normal.x + self.cos_theta * rec.normal.z
+        )
 
         rec.p = p
         rec.set_face_normal(rotated_r, normal)

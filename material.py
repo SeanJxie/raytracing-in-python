@@ -106,5 +106,5 @@ class Isotropic(Material):
         return True, attenuation, scattered
     
     def emitted(self, u: float, v: float, p: V3) -> V3:
-        return self.emit.value(u, v, p)
+        return V3(0, 0, 0)
     
