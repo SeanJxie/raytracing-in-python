@@ -17,11 +17,11 @@ With those two improvements, the render time is orders of magnitude faster. For 
 # Setup
 To get started, install and setup [PyPy](https://www.pypy.org/) and get it working with `pip`. [Here](https://www.activestate.com/resources/quick-reads/how-to-install-and-work-with-pypy/)'s a quick walkthrough.
 
-The raytracer only uses two external libraries (which are both used on the same line of code):
-- `Pillow` - for saving rendered images to memory.
+The raytracer only uses two external libraries:
+- `Pillow` - for saving rendered images to memory and loading image textures.
 - `numpy` - for converting data used internally to data compatible with `Pillow`.
 
-The rest of the project uses the Python Standard Library only.
+The rest of the project uses the Python Standard Library.
 
 Install both the packages with
 ```
