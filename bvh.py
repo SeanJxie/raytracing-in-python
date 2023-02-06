@@ -30,7 +30,7 @@ class BVHnode(Hittable):
         else:
             lst.objects.sort(key=cmp_to_key(compatator))
             
-            mid = start + int(object_span / 2)
+            mid = start + object_span // 2
             self.left = BVHnode(lst, start, mid, time0, time1)
             self.right = BVHnode(lst, mid, end, time0, time1)
 

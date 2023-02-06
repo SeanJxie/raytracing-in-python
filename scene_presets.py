@@ -172,7 +172,7 @@ def cornell_box_smoke() -> tuple[HittableList, Camera]:
     return world, cam
 
 def artwork() -> tuple[HittableList, Camera]:
-    boxes1 = HittableList()
+    #boxes1 = HittableList()
     ground = Lambertian(SolidColourTex(V3(0.48, 0.83, 0.53)))
     world = HittableList()
     boxes_per_side = 20
@@ -186,10 +186,9 @@ def artwork() -> tuple[HittableList, Camera]:
             y1 = random.uniform(1, 101)
             z1 = z0 + w
 
-            boxes1.add(Box(V3(x0, y0, z0), V3(x1, y1, z1), ground))
+            world.add(Box(V3(x0, y0, z0), V3(x1, y1, z1), ground))
 
-    
-    world.add(BVHnode(boxes1, 0, len(boxes1.objects), 0, 1))
+    #world.add(BVHnode(boxes1, 0, len(boxes1.objects), 0, 1))
 
     light = DiffuseLight(SolidColourTex(V3(7, 7, 7)))
     world.add(XZrect(123, 423, 147, 412, 554, light))
@@ -213,18 +212,10 @@ def artwork() -> tuple[HittableList, Camera]:
     pertext = NoiseTex(0.1)
     world.add(Sphere(V3(220, 280, 300), 80, Lambertian(pertext)))
 
-    boxes2 = HittableList()
     white = Lambertian(SolidColourTex(V3(.73, .73, .73)))
     ns = 1000
     for j in range(ns):
-        boxes2.add(Sphere(vec_rand_between(0,165), 10, white))
-
-    world.add(Translate(
-        RotateY(
-            BVHnode(boxes2, 0, len(boxes2.objects), 0.0, 1.0), 15),
-            V3(-100, 270, 395)
-        )
-    )
+       world.add(Translate(RotateY(Sphere(vec_rand_between(0,165), 10, white), 15), V3(-100, 270, 395)))
 
     lookat = V3(278, 278, 0)
     lookfrom = V3(478, 278, -600)
