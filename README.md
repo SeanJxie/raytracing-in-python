@@ -1,5 +1,7 @@
 # raytracing-in-python
 
+![p1](https://github.com/SeanJxie/raytracing-in-python/blob/main/artwork.png)
+
 A raytracer I implemented based on Peter Shirley's wonderful [raytracing book series](https://raytracing.github.io/).
 As it's implemented in Python and not in C++ as intended, the structure of the code may slightly deviate from that taught in the books. Furthermore, extra features will be added as I decide to expand the project to a useable raytracing software.
 
@@ -12,7 +14,7 @@ There are several optimizations that have been made to combat the slowness of Py
 
 With those two improvements, the render time is orders of magnitude faster. For example, the image below takes about *a day* to render with regular CPython and no multiprocessing, but only about *3 minutes* with PyPy and multiprocessing.
 
-![demo](https://github.com/SeanJxie/raytracing-in-python/blob/main/out.png)
+![p2](https://github.com/SeanJxie/raytracing-in-python/blob/main/out.png)
 
 # Setup
 To get started, install and setup [PyPy](https://www.pypy.org/) and get it working with `pip`. [Here](https://www.activestate.com/resources/quick-reads/how-to-install-and-work-with-pypy/)'s a quick walkthrough.
