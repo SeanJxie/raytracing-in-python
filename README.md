@@ -1,6 +1,8 @@
 # raytracing-in-python
 
-![p1](https://github.com/SeanJxie/raytracing-in-python/blob/main/artwork.png)
+<p align="center">
+  <img src="https://github.com/SeanJxie/raytracing-in-python/blob/main/artwork.png" />
+</p>
 
 A raytracer I implemented based on Peter Shirley's wonderful [raytracing book series](https://raytracing.github.io/).
 As it's implemented in Python and not in C++ as intended, the structure of the code may slightly deviate from that taught in the books. Furthermore, extra features will be added as I decide to expand the project to a useable raytracing software.
