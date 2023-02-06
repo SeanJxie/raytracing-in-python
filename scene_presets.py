@@ -171,6 +171,19 @@ def cornell_box_smoke() -> tuple[HittableList, Camera]:
 
     return world, cam
 
+def glass_and_emmisive_balls():
+    world = HittableList()
+
+    pertext = NoiseTex(4)
+    world.add(Sphere(V3(0, -1000, 0), 1000, Lambertian(pertext)))
+    world.add(Sphere(V3(0, 2, 0), 2, Lambertian(pertext)))
+
+    difflight = DiffuseLight(SolidColourTex(V3(4, 4, 4)))
+    world.add(XYrect(3, 5, 1, 3, -2, difflight))
+
+    return world, None
+
+
 def artwork() -> tuple[HittableList, Camera]:
     #boxes1 = HittableList()
     ground = Lambertian(SolidColourTex(V3(0.48, 0.83, 0.53)))
@@ -201,11 +214,11 @@ def artwork() -> tuple[HittableList, Camera]:
     world.add(Sphere(V3(260, 150, 45), 50, Dielectric(1.5)))
     world.add(Sphere(V3(0, 150, 145), 50, Metal(SolidColourTex(V3(0.8, 0.8, 0.9)), 1.0)))
 
-    boundary = Sphere(V3(360, 150, 145), 70, Dielectric(1.5))
-    world.add(boundary)
-    world.add(ConstantMedium(boundary, 0.2, SolidColourTex(V3(0.2, 0.4, 0.9))))
-    boundary = Sphere(V3(0, 0, 0), 5000, Dielectric(1.5))
-    world.add(ConstantMedium(boundary, 0.0001, SolidColourTex(V3(1, 1, 1))))
+    #boundary = Sphere(V3(360, 150, 145), 70, Dielectric(1.5))
+    #world.add(boundary)
+    #world.add(ConstantMedium(boundary, 0.2, SolidColourTex(V3(0.2, 0.4, 0.9))))
+    #boundary = Sphere(V3(0, 0, 0), 5000, Dielectric(1.5))
+    #world.add(ConstantMedium(boundary, 0.0001, SolidColourTex(V3(1, 1, 1))))
 
     emat = Lambertian(ImageTex(".\\textures\\earthmap.jpg"))
     world.add(Sphere(V3(400, 200, 400), 100, emat))

@@ -78,6 +78,7 @@ def render_scene(world: HittableList, camera: Camera, settings: Settings):
     print("Done.")
 
     print("\nRendering...")
+    print(f'Render progress: 0.00%', end='\r')
     start = time.time()
     with Pool(nprocs) as p:
         # Makeshift "starmap" using imap and partial (so that progress can still be tracked and constant params are set)
