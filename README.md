@@ -53,7 +53,7 @@ There isn't really any type of user interface setup at the moment. Running
 ```
 pypy ./main.py
 ```
-will render the image at the top of this README. Beware, though. It took a hefty 13 hours and 18 minutes to render on a typical quad-core laptop.
+will render the second image from the top of this README. Beware, though. It took a hefty 13 hours and 18 minutes to render on a typical quad-core laptop.
 
 If you want to play around with it, there are a few presets you can find in `scene_presets.py`. 
 In `main.py`, simply replace the call to `artwork()` with any of the presets to change the scene. There are some image options in `main.py` as well, so changes can be made as desired.
